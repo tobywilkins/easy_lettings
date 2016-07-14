@@ -1,0 +1,9 @@
+<% if @properties.any? %>
+  <ul>
+    <% @properties.each do |property| %>
+      <li> <%= property.name %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  No properties currently available
+<% end %>
