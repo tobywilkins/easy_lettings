@@ -3,7 +3,7 @@
     <% @properties.each do |property| %>
       <li> <%= property.name %> </li>
       <% property.pictures.each do |picture| %>
-      <td> <%= image_tag picture.image %></td>
+      <td> <%= image_tag picture.image(:large) %></td>
       <% end %>
     <% end %>
   </ul>

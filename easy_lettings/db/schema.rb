@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715134113) do
+ActiveRecord::Schema.define(version: 20160715160529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "galleries", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "property_id"
-    t.integer  "picture_id"
-    t.index ["picture_id"], name: "index_galleries_on_picture_id", using: :btree
-    t.index ["property_id"], name: "index_galleries_on_property_id", using: :btree
-  end
 
   create_table "pictures", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -31,6 +22,8 @@ ActiveRecord::Schema.define(version: 20160715134113) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "property_id"
+    t.index ["property_id"], name: "index_pictures_on_property_id", using: :btree
   end
 
   create_table "properties", force: :cascade do |t|
@@ -39,8 +32,6 @@ ActiveRecord::Schema.define(version: 20160715134113) do
     t.datetime "updated_at",  null: false
     t.string   "description"
     t.integer  "price"
-    t.integer  "gallery_id"
-    t.index ["gallery_id"], name: "index_properties_on_gallery_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,7 +52,5 @@ ActiveRecord::Schema.define(version: 20160715134113) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "galleries", "pictures"
-  add_foreign_key "galleries", "properties"
-  add_foreign_key "properties", "galleries"
+  add_foreign_key "pictures", "properties"
 end

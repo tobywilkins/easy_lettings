@@ -1,6 +1,5 @@
 class Property < ApplicationRecord
 
-  has_one :gallery
-  has_many :pictures, through: :gallery
+  has_many :pictures, dependent: :destroy
 
 end

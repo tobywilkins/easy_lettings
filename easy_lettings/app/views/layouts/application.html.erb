@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EasyLettings</title>
     <%= csrf_meta_tags %>
 
@@ -9,17 +12,26 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-      <% if current_user.admin? %>
-        <a href="/properties/new">Add a property</a>
+    <div id="body" class"container-fluid">
+
+      <div class="navbar-fixed-top">
+
+
+      <% if user_signed_in? %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-success' %>
+        <% if current_user.admin? %>
+          <a href="/properties/new">Add a property</a>
+        <% end %>
+      <% else %>
+
+
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-success' %>
+        <%= link_to "Log in", new_user_session_path, class: 'btn btn-info' %>
       <% end %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %>
-      <%= link_to "Log in", new_user_session_path %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+            </div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
