@@ -2,7 +2,9 @@
   <ul>
     <% @properties.each do |property| %>
       <li> <%= property.name %> </li>
-      <td> <%= image_tag property.image.url %></td>
+      <% property.pictures.each do |picture| %>
+      <td> <%= image_tag picture.image %></td>
+      <% end %>
     <% end %>
   </ul>
 <% else %>
