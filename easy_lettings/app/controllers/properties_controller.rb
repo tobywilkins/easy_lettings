@@ -16,6 +16,7 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @property.gallery = Gallery.create(gallery_params)
     if @property.save
       redirect_to '/'
     else
@@ -26,7 +27,11 @@ class PropertiesController < ApplicationController
 private
 
 def property_params
-    params.require(:property).permit(:name, :description, :price, :image)
+    params.require(:property).permit(:name, :description, :price)
+end
+
+def gallery_params
+    params.require(:property).permit(:image)
 end
 
 
