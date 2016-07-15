@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User can sign in and out" do
+feature "Homepage links" do
   context "user not signed in and on the homepage" do
     it "should see a 'sign in' link and a 'sign up' link" do
       visit('/')
@@ -52,7 +52,7 @@ feature "User can sign in and out" do
       User.make_admin('admin@easylettings.com')
     end
 
-    scenario 'admin should be able to add property' do
+    scenario 'admin should be able to see add property' do
       visit('/')
       expect(page).to have_link('Add a property')
     end
