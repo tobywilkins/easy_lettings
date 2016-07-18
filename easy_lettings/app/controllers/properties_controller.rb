@@ -2,6 +2,8 @@ class PropertiesController < ApplicationController
 
   def index
     @properties = Property.all
+    @properties.each do |property|
+    end
   end
 
   def new
@@ -12,6 +14,10 @@ class PropertiesController < ApplicationController
       flash.alert = "Please sign in as an admin"
       redirect_to '/'
     end
+  end
+
+  def show
+    @property = Property.find(params[:id])
   end
 
   def create

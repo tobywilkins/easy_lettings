@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EasyLettings</title>
+    <title>Easy2Let Reading</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,26 +12,67 @@
   </head>
 
   <body>
-    <div id="body" class"container-fluid">
 
-      <div class="navbar-fixed-top">
-
-
-      <% if user_signed_in? %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-success' %>
-        <% if current_user.admin? %>
-          <a href="/properties/new">Add a property</a>
-        <% end %>
-      <% else %>
-
-
-        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-success' %>
-        <%= link_to "Log in", new_user_session_path, class: 'btn btn-info' %>
-      <% end %>
-            </div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img class="navbar-left" style="max-width:100px; margin-top: 6px;" src="/assets/easy2letlogo.jpg" />
     </div>
-  </body>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Rooms Available</a><li>
+        <li><a href="/properties/new">About Us</a><li>
+        <% if user_signed_in? %>
+        <% if current_user.admin? %>
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" style="color:green;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="/properties/new" style="color:green;">Add a property</a><li>
+  </ul>
+</li>
+        <% end %>
+      <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+
+          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %><li>
+        <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li><%= link_to "Log in", new_user_session_path %></li>
+      <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+  <p class="notice"><%= notice %></p>
+  </div>
+  <% end %>
+  <% if alert %>
+  <div class="alert alert-warning" role="alert">
+  <p class="alert"><%= alert %></p>
+  </div>
+  <% end %>
+      <%= yield %>
+      <div class="navbar navbar-fixed-bottom" style="padding-top: 10px; padding-bottom: 10px;">
+
+      <div class="container" style="justify-content: center; font-size: 6;">
+      <strong>Easy2Let Reading</strong><br>
+      Dukesbridge House, 23 Duke Street,<br>
+      Reading, RG1 4SA<br>
+      <abbr title="Phone">P:</abbr> 01189 29 15 28
+      <abbr title="Email">E:</abbr> readingenquiries@easy2let.net
+    </div>
+
+  </div>
+</body>
 </html>
