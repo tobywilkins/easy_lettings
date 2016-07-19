@@ -46,3 +46,17 @@ feature 'create properties' do
     end
   end
 end
+
+feature 'edit properties ' do
+  context 'As admin user' do
+    before do
+        visit('/')
+        click_link('Sign up')
+        fill_in('Email', with: 'admin@easylettings.com')
+        fill_in('Password', with: 'testtest')
+        fill_in('Password confirmation', with: 'testtest')
+        click_button('Sign up')
+        User.make_admin('admin@easylettings.com')
+    end
+  end
+end

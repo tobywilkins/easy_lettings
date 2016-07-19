@@ -1,0 +1,38 @@
+<div class="container">
+
+
+<%=  form_for @property, html: {multipart: true} do |f| %>
+  <div class="form-group">
+  <%= f.label :name %>
+  <br>
+  <%= f.text_field :name %>
+    </div>
+    <div class="form-group">
+  <%= f.label :description %>
+  <br>
+  <%= f.text_field :description %>
+    </div>
+    <div class="form-group">
+  <%= f.label :price %>
+  <br>
+  <%= f.text_field :price %>
+    </div>
+      <div class="form-group">
+
+    <% if @property.pictures.exists? %>
+    <% @property.pictures.each do |picture| %>
+      <%= image_tag picture.image.url(:thumb) %>
+      <% end %>
+    <% end %>
+<br>
+<br>
+  <%= f.fields_for :pictures do |x| %>
+    <%= x.label :add_images %>
+    <%= x.file_field :images, :multiple => true, name: "pictures[images][]" %>
+  <% end %>
+    </div>
+    <br>
+    <%= f.submit class: 'btn btn-success'%>
+  <h4> <%= button_to "Delete #{@property.name}", property_path(@property),class: 'btn btn-danger', method: :delete %> </h4>
+<% end %>
+</div>

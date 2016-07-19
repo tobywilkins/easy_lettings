@@ -1,3 +1,8 @@
+
+<div class="col-md-4 col-sm-4">
+
+
+
 <% if @property.errors.any? %>
   <section id="errors" >
     <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved: </h2>
@@ -27,10 +32,16 @@
   <%= f.text_field :price %>
     </div>
   <div class="form-group">
+    <%= f.label :postcode %>
+    <br>
+    <%= f.text_field :postcode %>
+      </div>
+      <div class="form-group">
   <%= f.fields_for :pictures do |x| %>
     <%= x.label :images %>
     <%= x.file_field :images, :multiple => true, name: "pictures[images][]" %>
   <% end %>
     </div>
-  <%= f.submit('Add Property') %>
+  <%= f.submit class: 'btn btn-success' %>
 <% end %>
+</div>

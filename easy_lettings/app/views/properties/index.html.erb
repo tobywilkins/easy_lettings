@@ -5,14 +5,19 @@
         <div class="col-sm-4 col-md-4">
           <div class="thumbnail">
           <% if property.pictures.any? %>
-            <%= image_tag property.pictures.first.image(:large) %>
+            <%= image_tag property.pictures.first.image(:large), class:"img-rounded" %>
           <% else %>
           <img style="width: 400px;" src="/assets/No_image_available.svg" />
           <% end %>
               <div class="caption">
                 <h3> <%= property.name %> </h3>
                 <p><%= property.description %></p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <p> <%= link_to "View Room", property_path(property), :class => "btn btn-default", :role=> "button", :method => :get %>
+                  <% if current_user && current_user.admin? %>
+                  <%= link_to "Edit Property", edit_property_path(property), :class => "btn btn-info", :method => :get %> </p>
+                  <% else %>
+                  </p>
+                <% end %>
               </div>
             </div>
           </div>
